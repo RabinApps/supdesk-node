@@ -62,7 +62,7 @@ So the client refuses to start in a browser:
 
 ```ts
 // In a React component, bundled and served to users:
-new SupDesk({ apiKey: 'sd_live_…' });
+new SupDesk({ apiKey: "sd_live_…" });
 // → SupDeskConfigurationError: SupDesk is a server-side SDK and was constructed
 //   in a browser. …
 ```
@@ -73,7 +73,7 @@ Workspace Settings → API Keys, then move the call behind your own endpoint:
 
 ```ts
 // app/api/feedback/route.ts — runs on your server
-import { SupDesk } from 'supdesk';
+import { SupDesk } from "supdesk";
 
 const supdesk = new SupDesk({ apiKey: process.env.SUPDESK_API_KEY! });
 
@@ -265,13 +265,6 @@ pins `undici` to `^7.29.0`: miniflare (via `@cloudflare/vitest-pool-workers`) pi
 vulnerable `7.28.0` exactly, and `npm audit fix --force` "resolves" that by downgrading
 the pool to a vitest-3-only release, which breaks the workerd suite. Drop the override
 once miniflare bumps its own pin.
-
-## Releasing
-
-Push a `v*` tag. The release workflow re-runs everything (typecheck, lint, coverage,
-build, packaging checks, workerd, Deno), verifies the tag matches `package.json`, and
-publishes with npm provenance. Requires an `NPM_TOKEN` repository secret; provenance
-additionally requires the repository to be public.
 
 ## License
 
