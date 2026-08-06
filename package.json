@@ -1,0 +1,84 @@
+{
+  "name": "supdesk",
+  "version": "0.1.0",
+  "description": "Server-side TypeScript client for the SupDesk API. Runs in Node, Deno, Bun, and Cloudflare Workers. Not for browser use — the API key is a secret.",
+  "keywords": [
+    "supdesk",
+    "api",
+    "sdk",
+    "client",
+    "feedback",
+    "changelog",
+    "helpdesk",
+    "waitlist",
+    "cloudflare-workers",
+    "deno",
+    "edge",
+    "server-side"
+  ],
+  "license": "MIT",
+  "author": "Alex Rabin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexrabin/supdesk-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alexrabin/supdesk-node/issues"
+  },
+  "homepage": "https://github.com/alexrabin/supdesk-node#readme",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "vite build && node scripts/postbuild.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:workers": "vitest run --config test-edge/vitest.workers.config.ts",
+    "test:deno": "deno run --allow-net --allow-read test-edge/deno-smoke.ts",
+    "check:package": "publint && attw --pack .",
+    "check:edge": "node scripts/check-edge-safe.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@cloudflare/vitest-pool-workers": "^0.20.2",
+    "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.0.1",
+    "publint": "^0.3.23",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.66.0",
+    "vite": "^8.2.0",
+    "vite-plugin-dts": "^5.0.3",
+    "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "undici": "^7.29.0"
+  }
+}
