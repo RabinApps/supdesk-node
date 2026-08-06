@@ -3,19 +3,17 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Run every check and pack the tarball, but do not publish'
+        description: "Run every check and pack the tarball, but do not publish"
         type: boolean
         default: true
 
 permissions:
   contents: read
-  # Required for npm provenance, which attests that this tarball was built by
-  # this workflow from this commit. Note: provenance needs a PUBLIC repository —
-  # on a private repo, drop the --provenance flag below or the publish fails.
+  # Required for npm OIDC trusted publishing & provenance attestations
   id-token: write
 
 jobs:
@@ -27,7 +25,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
           cache: npm
           registry-url: https://registry.npmjs.org
 
@@ -80,5 +78,3 @@ jobs:
       - name: Publish
         if: startsWith(github.ref, 'refs/tags/v')
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
