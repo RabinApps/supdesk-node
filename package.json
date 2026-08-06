@@ -20,12 +20,12 @@
   "author": "Alex Rabin",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexrabin/supdesk-node.git"
+    "url": "git+https://github.com/RabinApps/supdesk-node.git"
   },
   "bugs": {
-    "url": "https://github.com/alexrabin/supdesk-node/issues"
+    "url": "https://github.com/RabinApps/supdesk-node/issues"
   },
-  "homepage": "https://github.com/alexrabin/supdesk-node#readme",
+  "homepage": "https://github.com/RabinApps/supdesk-node#readme",
   "type": "module",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.cjs",
@@ -69,6 +69,7 @@
     "@arethetypeswrong/cli": "^0.18.5",
     "@cloudflare/vitest-pool-workers": "^0.20.2",
     "@eslint/js": "^10.0.1",
+    "@microsoft/api-extractor": "^7.58.12",
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^10.0.1",
     "publint": "^0.3.23",
